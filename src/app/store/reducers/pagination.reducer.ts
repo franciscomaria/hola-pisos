@@ -38,7 +38,7 @@ const _nextReducer = createReducer(
 
 const _lastReducer = createReducer(
   initialPreviousState,
-  on(pagination.setPrevious, (state, { last }) => ({ ...state, last }))
+  on(pagination.setLast, (state, { last }) => ({ ...state, last }))
 );
 
 export function activeReducer(state: any, action: Action) {

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { HousesModel } from 'src/app/models/houses.model';
+import { HousesModel } from '../../models/houses.model';
 
 export const setHouses = createAction(
   '[Home] setHouses',

@@ -1,0 +1,9 @@
+<div class="card">
+  <img class="card-img-top" [src]="house.attributes.field_inmu_imag_arra[0]" alt="">
+  <div class="card-body">
+    <h5 class="card-title">{{ house.attributes.field_inmu_prec | currency: 'EUR' }}</h5>
+    <div class="card-text">
+      <p>Dirección: {{ house.attributes.field_inmu_tipo_via }} {{ house.attributes.field_inmu_nomb_call | titlecase }}</p>
+    </div>
+  </div>
+</div>

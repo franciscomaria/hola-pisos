@@ -6,17 +6,16 @@ export interface HousesState {
   houses: HousesModel[] | null;
 }
 
-export const initialPeopleState: HousesState = {
+export const initialHousesState: HousesState = {
   houses: null
 };
 
 const _housesReducer = createReducer(
-  initialPeopleState,
-  on(setHouses, (state, { houses }) => ({ ...state, houses: { ...houses } })),
+  initialHousesState,
+  on(setHouses, (state, { houses }) => ({ ...state, houses: [...houses] })),
   on(unSetHouses, state => ({ ...state, houses: null }))
 );
 
 export function housesReducer(state: any, action: Action) {
   return _housesReducer(state, action);
 }
-

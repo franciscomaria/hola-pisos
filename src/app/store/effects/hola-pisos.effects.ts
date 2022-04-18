@@ -1,29 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { AppService } from '../../app.service';
-import { ApiModel, HousesModel } from '../../models/houses.model';
+import { ApiModel } from '../../models/houses.model';
 import { setHouses } from '../actions/houses.actions';
-import { setActive } from '../actions/pagination.actions';
+import { setActive, setLast, setNext } from '../actions/pagination.actions';
 
 @Injectable()
 export class HolaPisosEffects {
+
+  constructor(
+    private actions$: Actions,
+    private appService: AppService
+  ) {}
 
   setHouse$ = createEffect(() =>
     this.actions$.pipe(
       ofType(setActive),
       switchMap((activePage) => {
         return this.appService.getHouses(activePage.active).pipe(
-          map((api: ApiModel) => {
-            return setHouses(({ houses: api.data }));
-          })
+          switchMap((apiData: ApiModel) => [
+            setHouses({ houses: apiData.data}),
+            setLast({last: apiData.links.last.href}),
+            setNext({next: apiData.links.next.href})
+          ])
         )
       })
     )
   );
-
-  constructor(
-    private actions$: Actions,
-    private appService: AppService
-  ) {}
 }

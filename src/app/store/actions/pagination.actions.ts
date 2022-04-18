@@ -10,7 +10,7 @@ export const setNext = createAction(
   props<{ next: string | null }>()
 );
 
-export const setPrevious = createAction(
+export const setLast = createAction(
   '[Home] setLast',
   props<{ last: string | null}>()
 );
