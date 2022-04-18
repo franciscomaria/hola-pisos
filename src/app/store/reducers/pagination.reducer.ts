@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 import * as pagination from '../actions/pagination.actions';
 
 export interface ActiveState {
-  active: string;
+  active: string | null;
 }
 
 export interface NextState {

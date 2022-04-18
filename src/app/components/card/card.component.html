@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" (click)="goToDetail(house)">
   <img class="card-img-top" [src]="house.attributes.field_inmu_imag_arra[0]" alt="">
   <div class="card-body">
     <h5 class="card-title">{{ house.attributes.field_inmu_prec | currency: 'EUR' }}</h5>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HousesModel } from 'src/app/models/houses.model';
 
 @Component({
@@ -8,5 +8,11 @@ import { HousesModel } from 'src/app/models/houses.model';
 })
 export class CardComponent {
   @Input() house!: HousesModel;
+
+  @Output() goToDetailPage = new EventEmitter<HousesModel>();
+
+  public goToDetail(house: HousesModel) {
+    this.goToDetailPage.emit(house);
+  }
 
 }

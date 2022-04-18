@@ -6,4 +6,10 @@ export const setHouses = createAction(
   props<{ houses: HousesModel[] }>()
 );
 
+export const setHouse = createAction(
+  '[Home] setHouse',
+  props<{ house: HousesModel }>()
+);
+
 export const unSetHouses = createAction('[Home] unSetHouses');
+export const unSetHouse = createAction('[Home] unSetHouse');
