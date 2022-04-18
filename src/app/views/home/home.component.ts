@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HousesModel } from 'src/app/models/houses.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.reducer';
+import { setActive } from '../../store/actions/pagination.actions';
+import { HousesModel } from '../../models/houses.model';
+import { environment } from '../../../../src/environments/environment';
 
 @Component({
   selector: 'hopi-home',
@@ -9,10 +13,12 @@ import { HousesModel } from 'src/app/models/houses.model';
 export class HomeComponent implements OnInit {
   public houses: HousesModel[] = [];
 
-  constructor() { }
+  constructor(
+    private store: Store<AppState>,
+  ) { }
 
   ngOnInit(): void {
-
+    this.store.dispatch(setActive({ active: environment.urlAPI }));
   }
 
 }

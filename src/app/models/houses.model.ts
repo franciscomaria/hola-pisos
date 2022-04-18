@@ -1,3 +1,19 @@
+export interface ApiModel {
+  jsonapi: JsonApiModel;
+  data: HousesModel[];
+  meta: MetaModel;
+  links: LinksPaginatorModel;
+}
+
+interface JsonApiModel {
+  version: string;
+  meta: MetaApiModel;
+}
+
+interface MetaApiModel {
+  links: LinksModel;
+}
+
 export interface HousesModel {
   type: string;
   id: string;
