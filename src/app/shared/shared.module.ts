@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from '../components/components.module';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
-
-
 
 @NgModule({
   declarations: [],
@@ -11,8 +8,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     CommonModule,
     ComponentsModule
   ],
-  exports: [
-    CarouselModule
-  ]
+  exports: []
 })
 export class SharedModule { }

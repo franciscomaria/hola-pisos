@@ -12,6 +12,8 @@ import { environment } from '../../src/environments/environment';
 import { appReducers } from './app.reducer';
 import localeES from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { SeparatorImagesPdfPipe } from './pipes/separator-images-pdf/separator-images-pdf.pipe';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(localeES)
 

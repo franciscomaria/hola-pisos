@@ -34,13 +34,9 @@ export class HolaPisosEffects {
   setHouse$ = createEffect(() =>
     this.actions$.pipe(
       ofType(setRef),
-      switchMap((refActive) => {
-        return this.appService.getHouse(refActive.ref).pipe(
-          map((apiData: ApiModel) => {
-            return setHouse({ house: apiData.data[0] })
-          })
-        )
-      })
+      switchMap((refActive) => this.appService.getHouse(refActive.ref).pipe(
+        map((apiData: ApiModel) => setHouse({ house: apiData.data[0] }))
+      ))
     )
   );
 }

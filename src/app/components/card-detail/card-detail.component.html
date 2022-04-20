@@ -17,6 +17,15 @@
     <i class="fa-solid fa-people-roof"></i>
     Habitaciones: {{ house?.attributes?.field_inmu_nume_habi }}
   </p>
+
+  <p>
+    <a [href]="house?.attributes?.field_inmu_imag_arra | separatorImagesPdf: 'pdf'"
+      target="_blank"
+      class="btn btn-primary" aria-pressed="true">
+      <i class="fa-solid fa-file-arrow-down"></i>
+      Descargar certificado energético
+    </a>
+  </p>
 </div>
 
 <div class="text-center">

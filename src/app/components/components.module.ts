@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CardDetailComponent } from './card-detail/card-detail.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 
@@ -19,7 +20,8 @@ import { CardDetailComponent } from './card-detail/card-detail.component';
   ],
   imports: [
     CommonModule,
-    CarouselModule
+    CarouselModule,
+    PipesModule
   ],
   exports: [
     CardComponent,

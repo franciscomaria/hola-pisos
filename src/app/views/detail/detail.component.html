@@ -2,7 +2,7 @@
 
 <div class="row row-cols-1 row-cols-md-2" *ngIf="!isLoading && !isEmpty">
   <div class="col">
-    <hopi-carousel [images]="house?.attributes?.field_inmu_imag_arra"></hopi-carousel>
+    <hopi-carousel [images]="house?.attributes?.field_inmu_imag_arra | separatorImagesPdf: 'images'"></hopi-carousel>
   </div>
   <div class="col align-self-center">
     <hopi-card-detail [house]="house"></hopi-card-detail>

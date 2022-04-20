@@ -6,7 +6,7 @@ import { HousesModel } from '../../models/houses.model';
 import { environment } from '../../../../src/environments/environment';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { setLoading, setRef } from '../../store/actions/houses.actions';
+import { setLoading } from '../../store/actions/houses.actions';
 
 @Component({
   selector: 'hopi-home',
@@ -60,8 +60,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public goToDetail(house: HousesModel): void {
-    this.store.dispatch(setRef({ ref: house.attributes.field_inmu_refe }));
-
     this.router.navigate(['/detail', house.attributes.field_inmu_refe]);
   }
 

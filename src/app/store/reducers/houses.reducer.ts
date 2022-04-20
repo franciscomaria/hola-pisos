@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { HousesModel } from 'src/app/models/houses.model';
-import { setHouse, setHouses, setLoading, setRef, unSetHouse, unSetHouses } from '../actions/houses.actions';
+import { setHouse, setHouses, setLoading, setRef, unSetHouse, unSetHouses, unSetRef } from '../actions/houses.actions';
 
 export interface HousesState {
   houses: HousesModel[];
@@ -49,6 +49,7 @@ const _houseReducer = createReducer(
 const _refReducer = createReducer(
   initialRefState,
   on(setRef, (state, { ref }) => ({ ...state, ref })),
+  on(unSetRef, (state) => ({ ...state, ref: null })),
 );
 
 const _loadingReducer = createReducer(

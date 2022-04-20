@@ -5,7 +5,7 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducer';
 import { HousesModel } from 'src/app/models/houses.model';
-import { setRef, unSetHouse } from 'src/app/store/actions/houses.actions';
+import { setRef, unSetHouse, unSetRef } from 'src/app/store/actions/houses.actions';
 
 @Component({
   selector: 'hopi-detail',
@@ -30,21 +30,21 @@ export class DetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.ref = this.route.snapshot.params['ref'];
+    this.store.dispatch(setRef({ ref: this.ref }));
+
     this.houseSubscription$ = this.store.select('house').subscribe(houseResults => {
       if (houseResults && houseResults.house) {
         this.house = houseResults.house;
 
         this.isEmpty = Object.keys(this.house).length === 0;
         this.isLoading = false;
-      } else if (this.route.snapshot.params['ref']) {
-        this.ref = this.route.snapshot.params['ref'];
-
-        this.store.dispatch(setRef({ ref: this.ref }))
       }
     });
   }
 
   ngOnDestroy(): void {
+    this.store.dispatch(unSetRef());
     this.store.dispatch(unSetHouse());
     this.houseSubscription$.unsubscribe();
   }
