@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public goToDetail(house: HousesModel): void {
     this.store.dispatch(setRef({ ref: house.attributes.field_inmu_refe }));
 
-    this.router.navigate(['/detail']);
+    this.router.navigate(['/detail', house.attributes.field_inmu_refe]);
   }
 
 }

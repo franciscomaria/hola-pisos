@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './app.reducer';
@@ -10,7 +10,7 @@ import { AppState } from './app.reducer';
 export class AppGuard implements CanActivate {
   constructor(
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
   ) { }
 
   canActivate(
@@ -18,13 +18,11 @@ export class AppGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let isHouse: boolean = false;
 
-      this.store.select('ref').subscribe(refResult => {
-        if (refResult && refResult.ref) {
-          isHouse = true;
-        } else {
-          this.router.navigate(['/home']);
-        }
-      });
+      if (route.params['ref']) {
+        isHouse = true;
+      } else {
+        this.router.navigate(['/home']);
+      }
 
       return isHouse;
   }

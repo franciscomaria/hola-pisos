@@ -8,7 +8,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule)
   },
   {
-    path: 'detail',
+    path: 'detail/:ref',
     loadChildren: () => import('./views/detail/detail.module').then(m => m.DetailModule),
     canActivate: [AppGuard]
   },

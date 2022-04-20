@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducer';
 import { HousesModel } from 'src/app/models/houses.model';
-import { unSetHouse } from 'src/app/store/actions/houses.actions';
+import { setRef, unSetHouse } from 'src/app/store/actions/houses.actions';
 
 @Component({
   selector: 'hopi-detail',
@@ -16,22 +16,30 @@ import { unSetHouse } from 'src/app/store/actions/houses.actions';
   ]
 })
 export class DetailComponent implements OnInit, OnDestroy {
-  public house!: HousesModel | null;
+  public house: HousesModel | null = null;
   public isLoading = true;
+  public isEmpty = false;
+  public ref!: string;
 
   private houseSubscription$!: Subscription;
 
   constructor(
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.houseSubscription$ = this.store.select('house').subscribe(houseResults => {
-      if (houseResults) {
+      if (houseResults && houseResults.house) {
         this.house = houseResults.house;
 
+        this.isEmpty = Object.keys(this.house).length === 0;
         this.isLoading = false;
+      } else if (this.route.snapshot.params['ref']) {
+        this.ref = this.route.snapshot.params['ref'];
+
+        this.store.dispatch(setRef({ ref: this.ref }))
       }
     });
   }
