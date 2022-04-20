@@ -1,1 +1,9 @@
 <p>detail works!</p>
+
+<!-- <div [innerHtml]="house?.attributes?.field_inmu_desc?.processed"></div> -->
+
+<carousel>
+  <slide *ngFor="let image of house?.attributes?.field_inmu_imag_arra">
+    <img [src]="image" alt="first slide" style="display: block; width: 100%;">
+  </slide>
+</carousel>

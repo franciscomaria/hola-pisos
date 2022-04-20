@@ -11,5 +11,11 @@ export const setHouse = createAction(
   props<{ house: HousesModel }>()
 );
 
+export const setRef = createAction(
+  '[Home] setRef',
+  props<{ ref: string }>()
+);
+
 export const unSetHouses = createAction('[Home] unSetHouses');
 export const unSetHouse = createAction('[Home] unSetHouse');
+export const unSetRef = createAction('[Home] unSetRef');

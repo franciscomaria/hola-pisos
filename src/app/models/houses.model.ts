@@ -47,4 +47,11 @@ interface AttributesModel {
   field_inmu_area_cons: string;
   field_inmu_imag_arra: string[];
   field_inmu_nomb_call: string;
+  field_inmu_desc?: DescriptionModel;
+}
+
+interface DescriptionModel {
+  format: string | null;
+  processed: string | null;
+  value: string | null;
 }

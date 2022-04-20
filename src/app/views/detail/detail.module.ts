@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DetailRoutingModule } from './detail-routing.module';
 import { DetailComponent } from './detail.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DetailComponent } from './detail.component';
   ],
   imports: [
     CommonModule,
-    DetailRoutingModule
+    DetailRoutingModule,
+    SharedModule
   ]
 })
 export class DetailModule { }
