@@ -6,7 +6,7 @@ import { HousesModel } from '../../models/houses.model';
 import { environment } from '../../../../src/environments/environment';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { setHouse, setRef } from '../../store/actions/houses.actions';
+import { setLoading, setRef } from '../../store/actions/houses.actions';
 
 @Component({
   selector: 'hopi-home',
@@ -16,8 +16,9 @@ import { setHouse, setRef } from '../../store/actions/houses.actions';
 export class HomeComponent implements OnInit, OnDestroy {
   public houses: HousesModel[] = [];
   public nextPagination!: string | null;
-  public isLoading = false;
+  public isLoading = true;
 
+  private isLoadingSubscription$!: Subscription;
   private housesSubscription$!: Subscription;
   private paginationSubscription$!: Subscription;
 
@@ -29,10 +30,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store.dispatch(setActive({ active: environment.urlAPI }));
 
+    this.isLoadingSubscription$ = this.store.select('isLoading').subscribe(isLoadingResult => {
+      this.isLoading = isLoadingResult.isLoading;
+    });
+
     this.housesSubscription$ = this.store.select('houses').subscribe(housesResults => {
       if (housesResults) {
         this.houses = housesResults.houses;
-        this.isLoading = false;
+        this.store.dispatch(setLoading({isLoading: false}));
       }
     });
 
@@ -42,12 +47,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.isLoadingSubscription$.unsubscribe();
     this.housesSubscription$.unsubscribe();
     this.paginationSubscription$.unsubscribe();
   }
 
   public loadMore(): void {
     if (this.nextPagination) {
+      this.store.dispatch(setLoading({isLoading: true}));
       this.store.dispatch(setActive({ active: this.nextPagination }))
     }
   }

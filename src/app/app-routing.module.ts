@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppGuard } from './app.guard';
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
   {
     path: 'detail',
     loadChildren: () => import('./views/detail/detail.module').then(m => m.DetailModule),
+    canActivate: [AppGuard]
   },
   { path: '**', redirectTo: '/home' },
   {

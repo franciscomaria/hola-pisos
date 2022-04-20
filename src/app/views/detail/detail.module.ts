@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DetailRoutingModule } from './detail-routing.module';
 import { DetailComponent } from './detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     DetailRoutingModule,
-    SharedModule
+    SharedModule,
+    ComponentsModule
   ]
 })
 export class DetailModule { }

@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { HousesModel } from 'src/app/models/houses.model';
-import { setHouse, setHouses, setRef, unSetHouse, unSetHouses } from '../actions/houses.actions';
+import { setHouse, setHouses, setLoading, setRef, unSetHouse, unSetHouses } from '../actions/houses.actions';
 
 export interface HousesState {
   houses: HousesModel[];
@@ -14,6 +14,10 @@ export interface RefState {
   ref: string | null;
 }
 
+export interface LoadingState {
+  isLoading: boolean;
+}
+
 export const initialHousesState: HousesState = {
   houses: []
 };
@@ -24,6 +28,10 @@ export const initialHouseState: HouseState = {
 
 export const initialRefState: RefState = {
   ref: null
+};
+
+export const initialLoadingState: LoadingState = {
+  isLoading: true
 };
 
 const _housesReducer = createReducer(
@@ -43,6 +51,11 @@ const _refReducer = createReducer(
   on(setRef, (state, { ref }) => ({ ...state, ref })),
 );
 
+const _loadingReducer = createReducer(
+  initialLoadingState,
+  on(setLoading, (state, { isLoading }) => ({ ...state, isLoading })),
+);
+
 export function housesReducer(state: any, action: Action) {
   return _housesReducer(state, action);
 }
@@ -53,4 +66,8 @@ export function houseReducer(state: any, action: Action) {
 
 export function refReducer(state: any, action: Action) {
   return _refReducer(state, action);
+}
+
+export function loadingReducer(state: any, action: Action) {
+  return _loadingReducer(state, action);
 }

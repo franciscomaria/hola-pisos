@@ -16,6 +16,11 @@ export const setRef = createAction(
   props<{ ref: string }>()
 );
 
+export const setLoading = createAction(
+  '[Home] setLoading',
+  props<{ isLoading: boolean }>()
+);
+
 export const unSetHouses = createAction('[Home] unSetHouses');
 export const unSetHouse = createAction('[Home] unSetHouse');
 export const unSetRef = createAction('[Home] unSetRef');
