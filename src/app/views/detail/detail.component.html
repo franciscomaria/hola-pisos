@@ -2,41 +2,10 @@
 
 <div class="row row-cols-1 row-cols-md-2" *ngIf="!isLoading && !isEmpty">
   <div class="col">
-    <carousel>
-      <slide *ngFor="let image of house?.attributes?.field_inmu_imag_arra">
-        <img [src]="image" alt="first slide" style="display: block; width: 100%;">
-      </slide>
-    </carousel>
+    <hopi-carousel [images]="house?.attributes?.field_inmu_imag_arra"></hopi-carousel>
   </div>
   <div class="col align-self-center">
-    <div>
-      <h3>
-        Referencia: {{ house?.attributes?.field_inmu_refe }}
-      </h3>
-    </div>
-    <div [innerHtml]="house?.attributes?.field_inmu_desc?.processed"></div>
-    <div>
-      <p>
-        <i class="fa-solid fa-location-dot"></i>
-        Ubicación: {{ house?.attributes?.field_inmu_tipo_via | titlecase}} {{ house?.attributes?.field_inmu_nomb_call | titlecase}}
-      </p>
-      <p>
-        <i class="fa-solid fa-tent-arrow-left-right"></i>
-        Área construida: {{ house?.attributes?.field_inmu_area_cons | number: '2.2'}} m<sup>2</sup>
-      </p>
-      <p>
-        <i class="fa-solid fa-people-roof"></i>
-        Habitaciones: {{ house?.attributes?.field_inmu_nume_habi }}
-      </p>
-    </div>
-
-    <div class="text-center">
-      <h1>
-        <span class="badge bg-success">
-          {{ house?.attributes?.field_inmu_prec | currency: 'EUR'}}
-        </span>
-      </h1>
-    </div>
+    <hopi-card-detail [house]="house"></hopi-card-detail>
   </div>
 </div>
 

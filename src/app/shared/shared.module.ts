@@ -9,8 +9,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
   declarations: [],
   imports: [
     CommonModule,
-    ComponentsModule,
-    CarouselModule
+    ComponentsModule
   ],
   exports: [
     CarouselModule
